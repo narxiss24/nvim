@@ -1,5 +1,6 @@
 call plug#begin('~/AppData/Local/nvim/plugged')
 
+
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
 Plug 'itchyny/lightline.vim'
 Plug 'drewtempelmeyer/palenight.vim'
