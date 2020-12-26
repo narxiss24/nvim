@@ -1,17 +1,24 @@
 call plug#begin('~/AppData/Local/nvim/plugged')
 
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'tomasr/molokai'
 Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
 Plug 'lambdalisue/vim-fullscreen'
 Plug 'jiangmiao/auto-pairs'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'yami-beta/asyncomplete-omni.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'easymotion/vim-easymotion'
 
 call plug#end()
 
 set number
+
+set autochdir
 
 set background=dark
 
@@ -26,17 +33,27 @@ let g:fullscreen#stop_command = "call rpcnotify(0, 'Gui', 'WindowFullScreen', 0)
 let mapleader = " "
 let maplocalleader = " "
 
-nmap <C-n> :NERDTreeToggle<CR>
-nmap <C-l> :Rformat<CR>
+"Register autocompletion
+call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
+\ 'name': 'omni',
+\ 'allowlist': ['*'],
+\ 'blocklist': ['c', 'cpp', 'html'],
+\ 'completor': function('asyncomplete#sources#omni#completor'),
+\ 'config': {
+\   'show_source_kind': 1
+\ }
+\ }))
+
+nmap <leader>nn :NERDTreeToggle<CR>
+
+"<S-space> for suggestions in insert mode
+inoremap <C-space> <C-X><C-O>
 
 "<C-/> to toggle comment
 nmap <C-/> <space>c<space>
 
-"<C-s> to save and <f5> to refresh
-nmap <C-s> :w<CR>
-nmap <f5> :so %<CR>
-
 "<CR> or <S-CR> to create empty line above or below
+
 nnoremap <CR> <S-a><CR><Esc>
 nnoremap <S-CR> <S-o><Esc>
 
@@ -53,7 +70,5 @@ noremap <Up> <Nop>
 noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
-inoremap <Up> <Nop>
-inoremap <Down> <Nop>
-inoremap <Left> <Nop>
-inoremap <Right> <Nop>
+
+set mouse=
