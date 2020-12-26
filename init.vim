@@ -11,17 +11,17 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'yami-beta/asyncomplete-omni.vim'
 Plug 'tpope/vim-fugitive'
-Plug 'airblade/vim-gitgutter'
-Plug 'easymotion/vim-easymotion'
+Plug 'airblade/vim-rooter'
+Plug 'dense-analysis/ale'
 
 call plug#end()
 
 set number
-
-set autochdir
+set autoindent
+set smartindent
 
 set background=dark
-
+set termguicolors
 colorscheme palenight
 
 let g:lightline = { 'colorscheme': 'palenight' }
@@ -44,16 +44,27 @@ call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
 \ }
 \ }))
 
+" Ale Linting
+let g:ale_sign_column_always=1
+let g:ale_lint_on_enter=1
+let g:ale_lint_on_text_changed='always'
+let g:ale_echo_msg_error_str='E'
+let g:ale_echo_msg_warning_str='W'
+let g:ale_echo_msg_format='[%linter%] %s [%severity%]: [%...code...%]'
+let g:ale_linters={'python': ['flake8'], 'r': ['lintr']}
+let g:ale_fixers={'python': ['black']}
+
 nmap <leader>nn :NERDTreeToggle<CR>
 
 "<S-space> for suggestions in insert mode
-inoremap <C-space> <C-X><C-O>
+inoremap <S-space> <C-X><C-O>
+inoremap <S-K> <Up>
+inoremap <S-J> <Down>
 
 "<C-/> to toggle comment
 nmap <C-/> <space>c<space>
 
 "<CR> or <S-CR> to create empty line above or below
-
 nnoremap <CR> <S-a><CR><Esc>
 nnoremap <S-CR> <S-o><Esc>
 
