@@ -49,8 +49,7 @@ inoremap <S-tab> <C-X><C-O>
 inoremap <S-K> <Up>
 inoremap <S-J> <Down>
 
-"<C-/> to toggle comment
-nmap <C-/> <space>c<space>
+nnoremap <leader>gp :!git add -A && git commit -m "auto-update" && git push
 
 "<CR> or <S-CR> to create empty line above or below
 nnoremap <CR> <S-a><CR><Esc>
