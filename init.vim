@@ -28,7 +28,7 @@ let g:airline_theme = "palenight"
 let g:fullscreen#start_command = "call rpcnotify(0, 'Gui', 'WindowFullScreen', 1)"
 let g:fullscreen#stop_command = "call rpcnotify(0, 'Gui', 'WindowFullScreen', 0)"
 
-let mapleader = " "
+let mapleader = ","
 let maplocalleader = " "
 
 "Register autocompletion
