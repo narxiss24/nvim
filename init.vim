@@ -70,3 +70,5 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 set mouse=
+
+let R_rconsole_height = 3
