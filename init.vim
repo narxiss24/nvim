@@ -18,7 +18,6 @@ call plug#end()
 set number
 set autoindent
 set smartindent
-
 set background=dark
 set termguicolors
 colorscheme palenight
@@ -46,7 +45,7 @@ call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
 nmap <leader>nn :NERDTreeToggle<CR>
 
 "<S-space> for suggestions in insert mode
-inoremap <S-space> <C-X><C-O>
+inoremap <S-tab> <C-X><C-O>
 inoremap <S-K> <Up>
 inoremap <S-J> <Down>
 
