@@ -49,7 +49,7 @@ inoremap <S-tab> <C-X><C-O>
 inoremap <S-K> <Up>
 inoremap <S-J> <Down>
 
-nnoremap <leader>gp :!git add -A && git commit -m "auto-update" && git push
+nnoremap <leader>gp :!git add -A && git commit -m "auto-push" && git push<CR>
 
 "<CR> or <S-CR> to create empty line above or below
 nnoremap <CR> <S-a><CR><Esc>
