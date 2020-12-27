@@ -10,7 +10,6 @@ Plug 'lambdalisue/vim-fullscreen'
 Plug 'jiangmiao/auto-pairs'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'yami-beta/asyncomplete-omni.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-rooter'
 
 call plug#end()
@@ -49,6 +48,7 @@ inoremap <S-tab> <C-X><C-O>
 inoremap <S-K> <Up>
 inoremap <S-J> <Down>
 
+"Git stage, commit and push
 nnoremap <leader>gp :!git add -A && git commit -m "auto-push" && git push<CR>
 
 "<CR> or <S-CR> to create empty line above or below
