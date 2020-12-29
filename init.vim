@@ -8,20 +8,25 @@ Plug 'preservim/nerdcommenter'
 Plug 'preservim/nerdtree'
 Plug 'lambdalisue/vim-fullscreen'
 Plug 'jiangmiao/auto-pairs'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'yami-beta/asyncomplete-omni.vim'
 Plug 'airblade/vim-rooter'
 Plug 'psliwka/vim-smoothie'
+Plug 'ervandew/supertab'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-jedi'
+Plug 'gaalcaras/ncm-R'
 
 call plug#end()
 
 set number
 set autoindent
 set smartindent
-set background=dark
-set termguicolors
 set visualbell
 set noerrorbells
+set termguicolors
+set background=dark
 
 colorscheme palenight
 
@@ -34,23 +39,14 @@ let g:fullscreen#stop_command = "call rpcnotify(0, 'Gui', 'WindowFullScreen', 0)
 let mapleader = ","
 let maplocalleader = " "
 
-"Register autocompletion
-call asyncomplete#register_source(asyncomplete#sources#omni#get_source_options({
-\ 'name': 'omni',
-\ 'allowlist': ['*'],
-\ 'blocklist': ['c', 'cpp', 'html'],
-\ 'completor': function('asyncomplete#sources#omni#completor'),
-\ 'config': {
-\   'show_source_kind': 1
-\ }
-\ }))
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
 
 nmap <leader>nn :NERDTreeToggle<CR>
 
 "<S-space> for suggestions in insert mode
-inoremap <S-tab> <C-X><C-O>
-inoremap <S-K> <Up>
-inoremap <S-J> <Down>
+inoremap <C-K> <Up>
+inoremap <C-J> <Down>
 
 "Git stage, commit and push
 nnoremap <leader>gp :!git add -A && git commit -m "auto-push" && git push<CR>
