@@ -11,6 +11,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'prabirshrestha/asyncomplete.vim'
 Plug 'yami-beta/asyncomplete-omni.vim'
 Plug 'airblade/vim-rooter'
+Plug 'psliwka/vim-smoothie'
 
 call plug#end()
 
