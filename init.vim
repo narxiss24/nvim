@@ -20,6 +20,9 @@ set autoindent
 set smartindent
 set background=dark
 set termguicolors
+set visualbell
+set noerrorbells
+
 colorscheme palenight
 
 let g:lightline = { 'colorscheme': 'palenight' }
