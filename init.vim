@@ -10,13 +10,8 @@ Plug 'lambdalisue/vim-fullscreen'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-rooter'
 Plug 'psliwka/vim-smoothie'
-Plug 'ervandew/supertab'
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'ncm2/ncm2-bufword'
-Plug 'ncm2/ncm2-path'
-Plug 'ncm2/ncm2-jedi'
-Plug 'gaalcaras/ncm-R'
+Plug 'lifepillar/vim-mucomplete'
+Plug 'davidhalter/jedi-vim'
 
 call plug#end()
 
@@ -30,6 +25,12 @@ set background=dark
 
 colorscheme palenight
 
+set completeopt-=preview
+set completeopt+=menuone,noselect
+
+let g:jedi#popup_on_dot = 0
+let g:mucomplete#enable_auto_at_startup = 1
+
 let g:lightline = { 'colorscheme': 'palenight' }
 let g:airline_theme = "palenight"
 
@@ -39,14 +40,7 @@ let g:fullscreen#stop_command = "call rpcnotify(0, 'Gui', 'WindowFullScreen', 0)
 let mapleader = ","
 let maplocalleader = " "
 
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
-
 nmap <leader>nn :NERDTreeToggle<CR>
-
-"<S-space> for suggestions in insert mode
-inoremap <C-K> <Up>
-inoremap <C-J> <Down>
 
 "Git stage, commit and push
 nnoremap <leader>gp :!git add -A && git commit -m "auto-push" && git push<CR>
