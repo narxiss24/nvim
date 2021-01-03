@@ -29,7 +29,7 @@ set completeopt+=menuone,noselect
 
 colorscheme palenight
 
-let g:python3_host_prog = '~/AppData/Local/nvim/nvenv/Scripts/python.exe'
+"let g:python3_host_prog = '~/AppData/Local/nvim/nvenv/Scripts/python.exe'
 
 "Autocomplete settings
 let g:mucomplete#enable_auto_at_startup = 1
