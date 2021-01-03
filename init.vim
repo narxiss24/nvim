@@ -25,7 +25,7 @@ set noerrorbells
 set termguicolors
 set background=dark
 set completeopt-=preview
-set completeopt+=longest,menuone,noselect
+set completeopt+=menuone,noselect
 
 colorscheme palenight
 
@@ -33,8 +33,13 @@ let g:python3_host_prog = '~/AppData/Local/nvim/nvenv/Scripts/python.exe'
 
 "Autocomplete settings
 let g:mucomplete#enable_auto_at_startup = 1
-let g:jedi#show_call_signatures = "0"
+let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#auto_initialization = 1
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
 let g:jedi#popup_on_dot = 0
+
 
 "Lightline settings
 let g:lightline = { 'colorscheme': 'palenight' }
@@ -53,6 +58,7 @@ let g:ale_echo_msg_warning_str='W'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]: [%...code...%]'
 let g:ale_linters={'python': ['flake8']}
 let g:ale_fixers={'python': ['black']}
+let g:ale_fix_on_save = 1
 
 let mapleader = ","
 let maplocalleader = " "
@@ -60,7 +66,7 @@ let maplocalleader = " "
 nmap <leader>nn :NERDTreeToggle<CR>
 
 "Git stage, commit and push
-nnoremap <leader>gp :!git add -A && git commit -m "auto-push" && git push<CR>
+nnoremap <leader>gp :!git add -A && git commit -m "auto-push" && git push --force<CR>
 
 "<CR> or <S-CR> to create empty line above or below
 nnoremap <CR> <S-a><CR><Esc>
