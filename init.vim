@@ -13,6 +13,8 @@ Plug 'psliwka/vim-smoothie'
 Plug 'lifepillar/vim-mucomplete'
 Plug 'davidhalter/jedi-vim'
 Plug 'jalvesaq/vimcmdline'
+Plug 'dense-analysis/ale'
+
 call plug#end()
 
 set number
@@ -22,23 +24,35 @@ set visualbell
 set noerrorbells
 set termguicolors
 set background=dark
+set completeopt-=preview
+set completeopt+=longest,menuone,noselect
 
 colorscheme palenight
 
-let g:python3_host_prog = '~/AppData/Local/nvim/venv/Scripts/python.exe'
+let g:python3_host_prog = '~/AppData/Local/nvim/nvenv/Scripts/python.exe'
 
-set completeopt-=preview
-set completeopt+=menuone,noselect
-
+"Autocomplete settings
 let g:mucomplete#enable_auto_at_startup = 1
-
+let g:jedi#show_call_signatures = "0"
 let g:jedi#popup_on_dot = 0
 
+"Lightline settings
 let g:lightline = { 'colorscheme': 'palenight' }
 let g:airline_theme = "palenight"
 
+"Fulscreen in nvim-qt
 let g:fullscreen#start_command = "call rpcnotify(0, 'Gui', 'WindowFullScreen', 1)"
 let g:fullscreen#stop_command = "call rpcnotify(0, 'Gui', 'WindowFullScreen', 0)"
+
+"Ale linting
+let g:ale_sign_column_always=1
+let g:ale_lint_on_enter=1
+let g:ale_lint_on_text_changed='always'
+let g:ale_echo_msg_error_str='E'
+let g:ale_echo_msg_warning_str='W'
+let g:ale_echo_msg_format='[%linter%] %s [%severity%]: [%...code...%]'
+let g:ale_linters={'python': ['flake8']}
+let g:ale_fixers={'python': ['black']}
 
 let mapleader = ","
 let maplocalleader = " "
