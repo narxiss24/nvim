@@ -37,6 +37,11 @@ let g:jedi#auto_initialization = 1
 let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#completions_enabled = 0
 
+"Vimcmdline settings
+let cmdline_map_start = '<LocalLeader>r'
+let cmdline_map_send_paragraph = '<LocalLeader>l'
+let cmdline_map_source_fun = '<LocalLeader>aa'
+
 "Lightline settings
 let g:lightline = { 'colorscheme': 'palenight' }
 let g:airline_theme = "palenight"
