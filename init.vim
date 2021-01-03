@@ -20,7 +20,7 @@ Plug 'HansPinckaers/ncm2-jedi'
 Plug 'gaalcaras/ncm-R'
 
 call plug#end()
-set cmdheight=5
+
 set number
 set autoindent
 set smartindent
