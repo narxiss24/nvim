@@ -33,13 +33,9 @@ let g:python3_host_prog = '~/AppData/Local/nvim/nvenv/Scripts/python.exe'
 
 "Autocomplete settings
 let g:mucomplete#enable_auto_at_startup = 1
-let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#auto_initialization = 1
+let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#completions_enabled = 0
-let g:jedi#auto_vim_configuration = 0
-let g:jedi#smart_auto_mappings = 0
-let g:jedi#popup_on_dot = 0
-
 
 "Lightline settings
 let g:lightline = { 'colorscheme': 'palenight' }
