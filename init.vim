@@ -10,11 +10,17 @@ Plug 'lambdalisue/vim-fullscreen'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-rooter'
 Plug 'psliwka/vim-smoothie'
-Plug 'lifepillar/vim-mucomplete'
 Plug 'davidhalter/jedi-vim'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-jedi'
+Plug 'HansPinckaers/ncm2-jedi'
+Plug 'gaalcaras/ncm-R'
 
 call plug#end()
-
+set cmdheight=5
 set number
 set autoindent
 set smartindent
@@ -25,11 +31,23 @@ set background=dark
 
 colorscheme palenight
 
-set completeopt-=preview
-set completeopt+=menuone,noselect
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=menuone,noselect,noinsert
 
+let g:python3_host_prog = '$PREFIX/bin/python3'
+
+let g:jedi#auto_initialization = 1
+let g:jedi#completions_enabled = 0
+let g:jedi#auto_vim_configuration = 0
+let g:jedi#smart_auto_mappings = 0
 let g:jedi#popup_on_dot = 0
-let g:mucomplete#enable_auto_at_startup = 1
+let g:jedi#completions_command = ""
+let g:jedi#show_call_signatures = "1"
+
+let ncm2#popup_delay = 5
+let ncm2#complete_length = [[1, 1]]
+let g:ncm2#matcher = 'substrfuzzy'
+let g:ncm2_jedi#python_version = 3
 
 let g:lightline = { 'colorscheme': 'palenight' }
 let g:airline_theme = "palenight"
