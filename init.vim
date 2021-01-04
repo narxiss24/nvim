@@ -29,7 +29,7 @@ set completeopt+=menuone,noselect
 
 colorscheme palenight
 
-"let g:python3_host_prog = '~/AppData/Local/nvim/nvenv/Scripts/python.exe'
+let g:python3_host_prog = '~/AppData/Local/nvim/nvenv/Scripts/python.exe'
 
 "Autocomplete settings
 let g:mucomplete#enable_auto_at_startup = 1
@@ -38,8 +38,9 @@ let g:jedi#use_tabs_not_buffers = 1
 let g:jedi#completions_enabled = 0
 
 "Vimcmdline settings
-let cmdline_map_start = '<LocalLeader>r'
-let cmdline_map_send_paragraph = '<LocalLeader>l'
+let cmdline_map_start = '<LocalLeader>rf'
+let cmdline_map_send = '<LocalLeader>l'
+let cmdline_map_send_paragraph = '<LocalLeader>pp'
 let cmdline_map_source_fun = '<LocalLeader>aa'
 
 "Lightline settings
