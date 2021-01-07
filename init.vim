@@ -1,6 +1,6 @@
 call plug#begin('~/plugged')
 
-Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+Plug 'jalvesaq/Nvim-R', { 'branch' : 'stable' }
 Plug 'itchyny/lightline.vim'
 Plug 'drewtempelmeyer/palenight.vim'
 Plug 'tomasr/molokai'
@@ -12,40 +12,52 @@ Plug 'airblade/vim-rooter'
 Plug 'psliwka/vim-smoothie'
 Plug 'lifepillar/vim-mucomplete'
 Plug 'davidhalter/jedi-vim'
-Plug 'jalvesaq/vimcmdline'
+Plug 'narxiss24/vimcmdline', { 'branch' : 'stable' }
 Plug 'dense-analysis/ale'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-jedi'
+Plug 'vim-scripts/indentpython.vim'
 
 call plug#end()
 
+set encoding=utf-8
 set number
-set autoindent
-set smartindent
 set visualbell
 set noerrorbells
 set termguicolors
 set background=dark
 set completeopt-=preview
 set completeopt+=menuone,noselect
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set textwidth=159
+set expandtab
+set autoindent
+set fileformat=unix
 
 colorscheme palenight
+
+"Lightline settings
+let g:lightline = { 'colorscheme' : 'palenight' }
 
 let g:python3_host_prog = '~/AppData/Local/nvim/nvenv/Scripts/python.exe'
 
 "Autocomplete settings
 let g:mucomplete#enable_auto_at_startup = 1
-let g:jedi#auto_initialization = 1
+let g:jedi#show_call_signatures = 1
+let g:deoplete#enable_at_startup = 1
 let g:jedi#use_tabs_not_buffers = 1
+let g:jedi#auto_initialization = 1
 let g:jedi#completions_enabled = 0
 
 "Vimcmdline settings
+let cmdline_app = { 'python' : 'nv&&python' }
 let cmdline_map_start = '<LocalLeader>rf'
 let cmdline_map_send = '<LocalLeader>l'
 let cmdline_map_send_paragraph = '<LocalLeader>pp'
 let cmdline_map_source_fun = '<LocalLeader>aa'
-
-"Lightline settings
-let g:lightline = { 'colorscheme': 'palenight' }
-let g:airline_theme = "palenight"
+let cmdline_map_quit = '<LocalLeader>rq'
 
 "Fulscreen in nvim-qt
 let g:fullscreen#start_command = "call rpcnotify(0, 'Gui', 'WindowFullScreen', 1)"
