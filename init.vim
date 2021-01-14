@@ -14,9 +14,9 @@ Plug 'lifepillar/vim-mucomplete'
 Plug 'davidhalter/jedi-vim'
 Plug 'narxiss24/vimcmdline', { 'branch' : 'stable' }
 Plug 'dense-analysis/ale'
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-jedi'
 Plug 'vim-scripts/indentpython.vim'
+Plug 'tpope/vim-surround'
+Plug 'stsewd/isort.nvim'
 
 call plug#end()
 
@@ -36,10 +36,12 @@ set expandtab
 set autoindent
 set fileformat=unix
 
-colorscheme palenight
+colorscheme molokai
+
+set guifont=Roboto\ Mono:h11
 
 "Lightline settings
-let g:lightline = { 'colorscheme' : 'palenight' }
+let g:lightline = { 'colorscheme' : 'molokai' }
 
 let g:python3_host_prog = '~/AppData/Local/nvim/nvenv/Scripts/python.exe'
 
