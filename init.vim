@@ -31,7 +31,7 @@ set completeopt+=menuone,noselect
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set textwidth=159
+set textwidth=119
 set expandtab
 set autoindent
 set fileformat=unix
@@ -44,6 +44,16 @@ set guifont=Roboto\ Mono:h11
 let g:lightline = { 'colorscheme' : 'molokai' }
 
 let g:python3_host_prog = '~/AppData/Local/nvim/nvenv/Scripts/python.exe'
+
+"Switch windows
+nmap <silent> <C-k> :wincmd k<CR>
+nmap <silent> <C-j> :wincmd j<CR>
+nmap <silent> <C-h> :wincmd h<CR>
+nmap <silent> <C-l> :wincmd l<CR>
+
+"Adjust window size
+nmap <C-=> :resize -3<CR>
+nmap <C--> :resize +3<CR>
 
 "Autocomplete settings
 let g:mucomplete#enable_auto_at_startup = 1
@@ -74,12 +84,18 @@ let g:ale_echo_msg_warning_str='W'
 let g:ale_echo_msg_format='[%linter%] %s [%severity%]: [%...code...%]'
 let g:ale_linters={'python': ['flake8']}
 let g:ale_fixers={'python': ['black']}
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
 let mapleader = ","
 let maplocalleader = " "
 
 nmap <leader>nn :NERDTreeToggle<CR>
+
+"Run ALEFIx
+nmap <leader>ll :ALEFix<CR>
+
+"Run Isort
+nmap <leader>li :Isort<CR>
 
 "Git stage, commit and push
 nnoremap <leader>gp :!git add -A && git commit -m "auto-push" && git push --force<CR>
@@ -105,3 +121,18 @@ noremap <Right> <Nop>
 set mouse=
 
 let R_rconsole_height = 3
+
+
+"Functions for ipdb
+func! s:SetBreakpoint()
+    cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . 'import ipdb; ipdb.set_trace()')
+endf
+
+func! s:RemoveBreakpoint()
+    exe 'silent! g/^\s*import\sipdb\;\?\n*\s*ipdb.set_trace()/d'
+endf
+
+func! s:ToggleBreakpoint()
+    if getline('.')=~#'^\s*import\sipdb' | cal s:RemoveBreakpoint() | el | cal s:SetBreakpoint() | en
+endf
+nnoremap <F6> :call <SID>ToggleBreakpoint()<CR>
