@@ -10,13 +10,16 @@ Plug 'lambdalisue/vim-fullscreen'
 Plug 'jiangmiao/auto-pairs'
 Plug 'airblade/vim-rooter'
 Plug 'psliwka/vim-smoothie'
-Plug 'lifepillar/vim-mucomplete'
-Plug 'davidhalter/jedi-vim'
-Plug 'narxiss24/vimcmdline', { 'branch' : 'stable' }
+Plug 'narxiss24/vimcmdline', { 'branch' : 'master' }
 Plug 'dense-analysis/ale'
 Plug 'vim-scripts/indentpython.vim'
 Plug 'tpope/vim-surround'
 Plug 'stsewd/isort.nvim'
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'ncm2/ncm2-bufword'
+Plug 'ncm2/ncm2-path'
+Plug 'ncm2/ncm2-jedi'
 
 call plug#end()
 
@@ -27,7 +30,7 @@ set noerrorbells
 set termguicolors
 set background=dark
 set completeopt-=preview
-set completeopt+=menuone,noselect
+set completeopt+=noinsert,menuone,noselect
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -52,16 +55,13 @@ nmap <silent> <C-h> :wincmd h<CR>
 nmap <silent> <C-l> :wincmd l<CR>
 
 "Adjust window size
-nmap <C-=> :resize -3<CR>
-nmap <C--> :resize +3<CR>
+nmap <C-=> :resize +3<CR>
+nmap <C--> :resize -3<CR>
 
 "Autocomplete settings
-let g:mucomplete#enable_auto_at_startup = 1
-let g:jedi#show_call_signatures = 1
-let g:deoplete#enable_at_startup = 1
-let g:jedi#use_tabs_not_buffers = 1
-let g:jedi#auto_initialization = 1
-let g:jedi#completions_enabled = 0
+autocmd BufEnter * call ncm2#enable_for_buffer()
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 "Vimcmdline settings
 let cmdline_app = { 'python' : 'nv&&python' }
@@ -118,21 +118,24 @@ noremap <Down> <Nop>
 noremap <Left> <Nop>
 noremap <Right> <Nop>
 
+"Toggle Cursorline
+map <F2> :set cursorline!<CR>
+
 set mouse=
 
 let R_rconsole_height = 3
 
 
-"Functions for ipdb
+"Functions for pdb
 func! s:SetBreakpoint()
-    cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . 'import ipdb; ipdb.set_trace()')
+    cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . 'import pdb; pdb.set_trace()')
 endf
 
 func! s:RemoveBreakpoint()
-    exe 'silent! g/^\s*import\sipdb\;\?\n*\s*ipdb.set_trace()/d'
+    exe 'silent! g/^\s*import\spdb\;\?\n*\s*pdb.set_trace()/d'
 endf
 
 func! s:ToggleBreakpoint()
-    if getline('.')=~#'^\s*import\sipdb' | cal s:RemoveBreakpoint() | el | cal s:SetBreakpoint() | en
+    if getline('.')=~#'^\s*import\spdb' | cal s:RemoveBreakpoint() | el | cal s:SetBreakpoint() | en
 endf
 nnoremap <F6> :call <SID>ToggleBreakpoint()<CR>
